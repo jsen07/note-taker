@@ -34,6 +34,20 @@ app.post('/api/notes', (req, res) => {
  
 });
 
+app.delete('/api/notes/:id', function (req, res) {
+    let deleteEl = req.params.id;
+    let noteEl = JSON.parse(fs.readFileSync('./Develop/db/db.json', 'utf8'));
+    
+    for (let i = 0; i < noteEl.length; i++){
+        if(deleteEl === noteEl[i].id) {
+            noteEl.splice(noteEl.indexOf(noteEl[i]), 1);
+            fs.writeFileSync("./Develop/db/db.json", JSON.stringify(noteEl), 'utf8');
+            res.json(noteEl);
+        }
+    }
+
+  });
+
 
 //HTML ROUTING 
 app.get("/notes", function(req, res) {
