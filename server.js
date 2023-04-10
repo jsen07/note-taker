@@ -29,7 +29,6 @@ app.post('/api/notes', (req, res) => {
         "title": req.body.title,
         "text": req.body.text
     }
-    console.log(JSON.stringify(req.body))
     notes.push(addNote);
     
     fs.writeFileSync("./Develop/db/db.json", JSON.stringify(notes), 'utf8');
@@ -41,21 +40,21 @@ app.delete('/api/notes/:id', function (req, res) {
     let deleteEl = req.params.id;
     let noteEl = JSON.parse(fs.readFileSync('./Develop/db/db.json', 'utf8'));
     
-    for (let i = 0; i < noteEl.length; i++){
-        if(deleteEl === noteEl[i].id) {
-            noteEl.splice(noteEl.indexOf(noteEl[i]), 1);
-            fs.writeFileSync("./Develop/db/db.json", JSON.stringify(noteEl), 'utf8');
-            res.json(noteEl);
-        }
-    }
-
-    // for (let index in noteEl){
-    //     if (deleteEl === noteEl[index].id) {
-    //         noteEl.splice(index, 1);
+    // for (let i = 0; i < noteEl.length; i++){
+    //     if(deleteEl === noteEl[i].id) {
+    //         noteEl.splice(noteEl.indexOf(noteEl[i]), 1);
     //         fs.writeFileSync("./Develop/db/db.json", JSON.stringify(noteEl), 'utf8');
     //         res.json(noteEl);
     //     }
     // }
+
+    for (let index in noteEl){
+        if (deleteEl === noteEl[index].id) {
+            noteEl.splice(index, 1);
+            fs.writeFileSync("./Develop/db/db.json", JSON.stringify(noteEl), 'utf8');
+            res.json(noteEl);
+        }
+    }
   });
 
 
