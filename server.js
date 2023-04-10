@@ -15,7 +15,6 @@ app.use(express.static(path.join(__dirname, '/Develop/public')));
 //request data db.json file
 app.get('/api/notes', function (req, res) {
     let data = fs.readFileSync('./Develop/db/db.json', 'utf8');
-        JSON.parse(JSON.stringify(data));
         let notes = JSON.parse(data);
         res.json(notes);
 
