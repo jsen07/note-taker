@@ -1,18 +1,21 @@
+//import packages 
 const express = require('express');
 const fs = require('fs');
 const path = require('path');
 const randomId = require('random-id');
 
+//set constraints to generate unique id
 let length = 30;
 let pattern = 'aA0';
 
+//Initialise express
 const app = express();
 const PORT = process.env.PORT || 3001;
 app.use(express.urlencoded({ extended: true}));
 app.use(express.json())
 app.use(express.static(path.join(__dirname, '/Develop/public')));
 
-//request data db.json file
+//request data from db.json file
 app.get('/api/notes', function (req, res) {
     let data = fs.readFileSync('./Develop/db/db.json', 'utf8');
         let notes = JSON.parse(data);
@@ -20,6 +23,7 @@ app.get('/api/notes', function (req, res) {
 
 });
 
+//save data to db.json
 app.post('/api/notes', (req, res) => {
 
     let notesJSON = fs.readFileSync('./Develop/db/db.json', 'utf8');
@@ -36,6 +40,7 @@ app.post('/api/notes', (req, res) => {
  
 });
 
+//delete function to remove saved notes
 app.delete('/api/notes/:id', function (req, res) {
     let deleteEl = req.params.id;
     let noteEl = JSON.parse(fs.readFileSync('./Develop/db/db.json', 'utf8'));
