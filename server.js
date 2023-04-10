@@ -1,6 +1,10 @@
 const express = require('express');
 const fs = require('fs');
 const path = require('path');
+const randomId = require('random-id');
+
+let length = 30;
+let pattern = 'aA0';
 
 const app = express();
 const PORT = process.env.PORT || 3001;
@@ -22,7 +26,7 @@ app.post('/api/notes', (req, res) => {
     let notesJSON = fs.readFileSync('./Develop/db/db.json', 'utf8');
     let notes = JSON.parse(notesJSON);
     let addNote = {
-        "id": req.body.title + req.body.text,
+        "id": randomId(length, pattern),
         "title": req.body.title,
         "text": req.body.text
     }
@@ -46,6 +50,13 @@ app.delete('/api/notes/:id', function (req, res) {
         }
     }
 
+    // for (let index in noteEl){
+    //     if (deleteEl === noteEl[index].id) {
+    //         noteEl.splice(index, 1);
+    //         fs.writeFileSync("./Develop/db/db.json", JSON.stringify(noteEl), 'utf8');
+    //         res.json(noteEl);
+    //     }
+    // }
   });
 
 
