@@ -39,7 +39,7 @@
 
 
 ## Application
-
+[https://app-note-take.herokuapp.com/] -- link to deployed app in heroku
 
 APP
 
