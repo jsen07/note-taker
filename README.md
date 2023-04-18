@@ -37,6 +37,23 @@ To create an application called Note Taker that can be used to write and save no
 
 To use the application click on the link to the deployed application. You will be redirected to the index page where by hitting the 'Get started' button you will be taken to a page where you are able to add new notes and view already saved notes. By clicking on the add new note button located at the top right hand corner of the application you are able to add a new note by setting a note title and a note description, the note can then be saved by clicking on the save button on the top right hand corner. Saved notes will be displayed on the left hand side of the application and can be viewed by clicking on them, additionally saved notes can be deleted by clicking on the delete button beside the saved note.
 
+To run the application using VS Code in the terminal you must:
+Install required packages to run the app.
+```
+npm install
+
+```
+Start the application
+```
+node server
+
+```
+Open localhost in the web browser using port number 3001 which can be done using the optional package nodemon which can be installed using 
+
+```
+npm install -g nodemon
+
+```
 
 ## Application
 [https://app-note-take.herokuapp.com/] -- link to deployed app in heroku
